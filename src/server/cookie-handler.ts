@@ -1,17 +1,17 @@
-// Import the cookie/request helpers from the narrow `@tanstack/start-server-core`
+// Import the cookie/request helpers from the narrow `@tanstack/start-server-core/request-response`
 // entry, NOT the broad `@tanstack/react-start/server` barrel. The barrel
 // re-exports the SSR render handlers (renderRouterToString → react-dom/server),
 // which, if this module is ever reached from a client-bundled file (e.g. a
 // `start.ts` that registers middleware), would drag server-only render code into
 // the client bundle and break hydration. The narrow entry exposes the same
-// helpers without the renderer. (start-server-core is a direct dependency of
-// @tanstack/react-start, so it is always present.)
+// helpers without the renderer or internal virtual module references. (start-server-core
+// is a direct dependency of @tanstack/react-start, so it is always present.)
 import {
   getCookie,
   getCookies,
   setCookie,
   deleteCookie,
-} from '@tanstack/start-server-core'
+} from '@tanstack/start-server-core/request-response'
 import type {
   CookieHandler,
   CookieSerializeOptions,
